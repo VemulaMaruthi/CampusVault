@@ -9,7 +9,7 @@ const Resources = () => {
     if (!selectedDomain) return;
 
     try {
-      const res = await fetch(`http://localhost:8080/api/files?domain=${selectedDomain}`);
+      const res = await fetch(`http://localhost:8081/api/files?domain=${selectedDomain}`);
       const data = await res.json();
       setPapers(data);
     } catch (err) {
@@ -17,10 +17,10 @@ const Resources = () => {
     }
   };
 
-  // 🧠 Function to trigger file download
+  //  Function to trigger file download
   const handleDownload = (id, filename) => {
     const link = document.createElement("a");
-    link.href = `http://localhost:8080/api/files/download/${id}`;
+    link.href = `http://localhost:8081/api/files/download/${id}`;
     link.download = filename;
     link.click();
   };
@@ -66,7 +66,7 @@ const Resources = () => {
                 <span
                   className="cursor-pointer font-medium text-[#1d3557] hover:underline"
                   onClick={() =>
-                    window.open(`http://localhost:8080/api/files/view/${file.id}`, "_blank")
+                    window.open(`http://localhost:8081/api/files/view/${file.id}`, "_blank")
                   }
                 >
                   {file.filename}
