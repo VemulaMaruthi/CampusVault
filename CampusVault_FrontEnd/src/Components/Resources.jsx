@@ -26,9 +26,9 @@ const Resources = () => {
   };
 
   return (
-    <div id="resources" className="flex flex-col md:flex-row h-screen">
-      {/* === Sidebar === */}
-      <aside className="w-full md:w-[320px] bg-[#181818] text-white p-8 border-r-2 border-gray-800">
+    <div id="resources" className="flex flex-col md:flex-row h-[calc(100vh-80px)] overflow-hidden">
+      
+      <aside className="w-full md:w-[320px] bg-[#181818] text-white p-8 border-r-2 border-gray-800 overflow-y-auto h-screen">
         <h3 className="text-3xl font-bold mb-3">Select Domain</h3>
         <p className="text-gray-400 mb-3">Choose a domain to view available papers.</p>
         <select
@@ -43,8 +43,8 @@ const Resources = () => {
         </select>
       </aside>
 
-      {/* === Main Content === */}
-      <section className="flex-1 bg-white text-black p-8 text-left overflow-y-auto">
+     
+      <section className="flex-1   bg-white text-black p-8 text-left overflow-hidden ">
         <h2 className="text-3xl font-bold text-[#1d3557] mb-4">
           All Available Papers
         </h2>
@@ -57,6 +57,7 @@ const Resources = () => {
         {papers.length === 0 ? (
           <p className="text-gray-600">No papers found</p>
         ) : (
+          <div className="max-h-[65vh] overflow-y-auto  scrollbar-hide">
           <ul>
             {papers.map((file) => (
               <li
@@ -81,6 +82,7 @@ const Resources = () => {
               </li>
             ))}
           </ul>
+          </div>
         )}
       </section>
     </div>
