@@ -3,7 +3,11 @@ import React, { useState } from "react";
 const Resources = () => {
   const [domain, setDomain] = useState("");
   const [papers, setPapers] = useState([]);
-
+  const [searchPapers, setSearchPapers] = useState("");
+ 
+  const filterpapers = papers.filter((file) => 
+  file.filename.toLowerCase().includes(searchPapers.toLowerCase())
+);
   const showPapers = async (selectedDomain) => {
     setDomain(selectedDomain);
     if (!selectedDomain) return;
@@ -51,15 +55,16 @@ const Resources = () => {
         <input
           type="text"
           placeholder="⌕ Search by Subject, Year, or Regulation..."
+          onChange={(e) => setSearchPapers(e.target.value)}
           className="border border-[#457B9D] bg-[#eaf4ff] p-2 rounded w-full mb-4"
         />
 
-        {papers.length === 0 ? (
+        {filterpapers.length === 0 ? (
           <p className="text-gray-600">No papers found</p>
         ) : (
           <div className="max-h-[65vh] overflow-y-auto  scrollbar-hide">
           <ul>
-            {papers.map((file) => (
+            {filterpapers.map((file) => (
               <li
                 key={file.id}
                 className="flex justify-between items-center bg-gray-100 hover:bg-gray-200 p-3 mb-2 rounded shadow"
